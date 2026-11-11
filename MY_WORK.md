@@ -32,11 +32,11 @@
 
 | Field | Your Answer |
 |-------|-------------|
-| **Full Name** | [Write your full name here] |
-| **Student ID** | [Write your student ID here] |
-| **University Email** | [yourid]@std.psau.edu.sa |
-| **GitHub Username** | [your-github-username] |
-| **Repository Link** | [Paste your repository link here] |
+| **Full Name** | Faisal mohammed Al-Faifi |
+| **Student ID** | 445050079 |
+| **University Email** | 445050079@std.psau.edu.sa |
+| **GitHub Username** | Faisal-M-alfaifi |
+| **Repository Link** | https://github.com/Faisal-M-alfaifi/OS-Assignment3-Faisal-AlFaifi |
  
 ---
 
@@ -132,68 +132,101 @@
 
 ## Your Development Log
 
-### Entry 1 - [Date and Time]
-**What I did**:
+### Entry 1 - [October 23, 2026, 7:04 PM]
+
+**What I did**: Set up my GitHub repository and tested the original starter code.
 
 **Details**:
+- Forked the starter repository and opened it in VS Code.
+- Changed the student ID to 445050079.
+- Ran the original program before making synchronization fixes.
+- The program showed incorrect counters and a WATCHDOG warning.
+- Created my first commit: `Set my student ID: 445050079`.
 
-**Challenges**:
+**Challenges**: The original program did not always complete correctly because of race conditions.
 
-**Solution**:
+**Solution**: I reviewed the code and compared the expected and observed values to understand where synchronization was needed.
 
-**Time spent**:
+**Time spent**: Approximately 1 hour.
 
 ---
 
-### Entry 2 - [Date and Time]
-**What I did**:
+
+### Entry 2 - [October 29, 2026, 1:50 AM]
+
+**What I did**: Implemented Feature 1 to protect the shared ready queue using a ReentrantLock.
 
 **Details**:
+- Added queueLock inside the ReadyQueue class.
+- Used lock() and try/finally to protect add(), poll(), processOf(), and snapshot().
+- Tested the program several times to check the queue behavior.
+- Created and pushed the commit: Feature 1: Protected the ready queue with a ReentrantLock.
 
-**Challenges**:
+**Challenges**: Multiple CPU threads could access and modify the ready queue at the same time, causing race conditions.
 
-**Solution**:
+**Solution**: I used one ReentrantLock to protect the queue and made sure it was always released in the finally block.
 
-**Time spent**:
+**Time spent**: Approximately 40 minutes.
 
 ---
 
-### Entry 3 - [Date and Time]
-**What I did**:
+### Entry 3 - [November 6, 2026, 5:49 PM]
+
+**What I did**: Implemented Feature 2 to protect the shared statistics counters using ReentrantLock.
 
 **Details**:
+- Added statsLock inside the SharedStats class.
+- Used one lock to protect contextSwitchCount, completedProcessCount, and totalServiceTime.
+- Protected the three update methods and the three getter methods.
+- Used try/finally to make sure the lock was always released.
+- Tested the program five times and confirmed that all three statistics matched the expected values.
+- Created and pushed the commit: Feature 2: Added locks to the shared statistics counters.
 
-**Challenges**:
+**Challenges**: Multiple threads were updating the shared counters at the same time, causing lost updates and incorrect results.
 
-**Solution**:
+**Solution**: I used one ReentrantLock for all three statistics and protected both reading and updating operations.
 
-**Time spent**:
+**Time spent**: Approximately 2 hours.
 
 ---
 
-### Entry 4 - [Date and Time]
-**What I did**:
+### Entry 4 - [November 10, 2026, 9:15 PM]
+
+**What I did**: Implemented Feature 3 to replace busy waiting with a counting semaphore.
 
 **Details**:
+- Imported Semaphore and created readySemaphore inside the ReadyQueue class with an initial value of 0.
+- Added release() to signal when a process is added to the ready queue.
+- Used acquire() inside CpuWorker to wait for an available process.
+- Removed the busy waiting loop and its unnecessary CPU polling.
+- Added a shutdown signal to wake up waiting CPUs after all processes finished.
+- Created and pushed the commit: Feature 3: Replaced busy waiting with a counting semaphore.
 
-**Challenges**:
+**Challenges**: The CPUs could remain blocked forever after the last process finished.
 
-**Solution**:
+**Solution**: I used release(totalCPUs) to wake up the waiting CPUs and allow them to terminate correctly.
 
-**Time spent**:
+**Time spent**: Approximately 1 hour.
 
 ---
 
-### Entry 5 - [Date and Time]
-**What I did**:
+### Entry 5 - [November 11, 2026, 7:30 PM]
+
+**What I did**: Reviewed the completed assignment and started preparing the documentation in MY_WORK.md.
 
 **Details**:
+- Reviewed the three completed synchronization features.
+- Checked the final testing results from five consecutive runs.
+- Confirmed that all four verification values matched the expected results.
+- Reviewed the GitHub commit history for all three features.
+- Started completing the Development Log using the actual work completed during the assignment.
+- Checked the documentation requirements in README.md.
 
-**Challenges**:
+**Challenges**: Organizing the work completed across different sessions and making sure the documentation matched the actual code and test results.
 
-**Solution**:
+**Solution**: I reviewed my GitHub commits, previous test results, and assignment instructions to document the work accurately.
 
-**Time spent**:
+**Time spent**: Approximately 1 hour.
 
 ---
 
@@ -214,13 +247,15 @@
 
 > 💡 **TIP:** Fill this in **last**, after all entries are written.
 
-**Total time spent on assignment**: [X hours]
 
-**Most challenging part**:
+**Total time spent**: Approximately 5 hours and 40 minutes.
 
-**Most interesting learning**:
+**Most challenging part**: Implementing the counting semaphore and making sure all CPU threads terminated correctly after the last process finished.
 
-**What I would do differently next time**:
+**Most interesting thing I learned**: I learned how ReentrantLock prevents race conditions and how Semaphore allows threads to wait without busy waiting.
+
+**What I would do differently next time**: I would test each synchronization change earlier, document my progress after every session, and make smaller commits throughout development.
+
 
 ---
 
@@ -240,7 +275,8 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+
+I learned that synchronization is important when multiple threads access shared data at the same time. In the original program, race conditions caused incorrect results because threads updated the same variables without protection. I used ReentrantLock to protect the ready queue and shared statistics. I also learned that try/finally makes sure the lock is released correctly. Using a counting semaphore helped me replace busy waiting with a more efficient way for CPU threads to wait. After applying these changes, the program produced correct results in repeated tests.
 
 ## Question 2: What was the most challenging part of this assignment?
 
@@ -248,7 +284,8 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+
+The most challenging part of this assignment was implementing the counting semaphore correctly. I needed to understand how CPU threads should wait when the ready queue is empty. At first, I was concerned that some threads might remain blocked after all processes finished. I had to make sure the semaphore released enough permits to wake up the waiting CPUs. I solved this by using release(totalCPUs) when the last process completed. This helped me understand how important thread termination is in synchronization.
 
 ## Question 3: How did you overcome the challenges you faced?
 
@@ -256,7 +293,8 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+
+I overcame the challenges by working on one feature at a time. First, I reviewed the code to understand where race conditions happened. Then, I added locks to protect the ready queue and shared statistics. For the semaphore, I checked how threads wait and how they wake up when a process becomes available. I tested the program multiple times after making changes to make sure everything worked correctly. Comparing the expected and observed results helped me confirm that my solutions were successful.
 
 ## Question 4: Where can synchronization concepts be applied in real-world applications?
 
@@ -264,7 +302,8 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+
+Synchronization is used in many real-world applications where multiple users or threads access shared resources. In banking systems, locks help prevent incorrect account balances when transactions happen at the same time. Online ticket booking systems use synchronization to prevent two customers from booking the same seat. Databases also use locks to protect shared data during updates. A print queue is another example where a semaphore can help manage available work. These examples are similar to my assignment because multiple CPU threads need safe access to the shared ready queue.
 
 ### Optional: What would you like to learn more about?
 
@@ -298,20 +337,30 @@
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+
+In my original run, context switches were 29 instead of 35, completed processes were 14 instead of 17, and total service time was 66574 instead of 80047. This happened because multiple CPU threads could read and update shared variables at the same time. RaceWindow.pause() increased the chance of a lost update by allowing two threads to read the same value before writing. This can also happen without RaceWindow.pause() because thread execution order is unpredictable, making the problem difficult to detect. After using ReentrantLock, the final program produced the expected results.
 
 Verification block of the **original starter**:
 ```
-[Paste the verification block (or the exception/watchdog message) of the starter here]
+Context switches: Expected 35, Observed 29
+Completed processes: Expected 17, Observed 14
+Total service time: Expected 80047, Observed 66574
+Busy-waiting polls: Expected 0, Observed 560
+WATCHDOG triggered after 27 seconds
 ```
 
 Verification block of **my final version**:
 ```
-[Paste the verification block of your final version here (all lines ✔)]
+Context switches: Expected 35, Observed 35
+Completed processes: Expected 17, Observed 17
+Total service time: Expected 80047, Observed 80047
+Busy-waiting polls: Expected 0, Observed 0
+All verification checks passed.
 ```
 
 **Explanation of the timeline:**
-[Explain the lost update step by step.]
+
+CPU-1 reads contextSwitchCount = 12, and CPU-2 also reads 12 before CPU-1 finishes updating it. CPU-1 writes 13, then CPU-2 writes 13 instead of 14. As a result, one increment is lost because both threads updated the same shared value without mutual exclusion.
 
 ## Question 2: Critical Sections and Lock Granularity
 
@@ -321,13 +370,13 @@ Verification block of **my final version**:
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+
+I protected the ReadyQueue methods using queueLock and the three shared statistics using statsLock. I used one lock for all three statistics because it was easier to manage, but separate locks could reduce unnecessary waiting. I used a different lock for the ready queue so queue operations would not block statistics updates. Both locks provide mutual exclusion by allowing only one thread to access each protected critical section at a time. The default ReentrantLock is not fair, so bounded waiting is not guaranteed, although threads can make progress when locks are released.
 
 | Critical section (variable / method) | Lock used | Why it needs protection |
 |---|---|---|
-| [e.g., `ReadyQueue.poll()`] | [lock name] | [reason] |
-| [...] | [...] | [...] |
-
+| ReadyQueue: add(), poll(), processOf(), snapshot() | queueLock | Prevents multiple CPU threads from accessing or modifying the shared queue at the same time. |
+| SharedStats: contextSwitchCount, completedProcessCount, totalServiceTime (update methods and getters) | statsLock | Prevents race conditions and lost updates when CPU threads access the shared statistics. |
 ## Question 3: Busy Waiting vs Semaphore
 
 **Question**: Describe the **busy waiting** of the starter and its cost (give the `Busy-waiting polls` number from your **starter** run). What does the **value of your semaphore** represent? What is its **initial value** and why? What is its value right after the `numProcesses` initial `add()` calls? Why does the last CPU call `release(totalCPUs)` at the end, and what would happen if it did not?
@@ -336,7 +385,8 @@ Verification block of **my final version**:
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+
+In the original program, CPU threads repeatedly checked the empty ready queue, causing 560 busy-waiting polls and wasting CPU resources. I replaced this with a counting semaphore that represents the number of available processes in the queue. The semaphore starts at 0 because the queue is initially empty, and after numProcesses initial add() calls, it has numProcesses permits before any CPU consumes them. When the queue is empty, acquire() blocks the CPU thread instead of repeatedly checking the queue. When the last process finishes, release(totalCPUs) wakes up waiting CPU threads so they can exit; without it, some threads could remain blocked forever.
 
 ## Question 4: Classical Problems and Deadlock
 
@@ -346,25 +396,35 @@ Verification block of **my final version**:
 
 **Your Answer:** *(3-5 sentences)*
 
+This assignment follows the producer-consumer problem, where the main thread initially adds processes and CPU threads consume them, while CPUs can also re-enqueue unfinished processes. For a bounded queue of capacity K, I would use three semaphores: empty initialized to K, full initialized to 0, and mutex initialized to 1. A deadlock could happen if a producer holds mutex while waiting for an empty slot because the consumer cannot acquire mutex to remove a process. To prevent this, I would acquire empty before mutex, breaking the hold-and-wait condition.
+
 **Classical problem and roles**:
-[Name the problem; who is the producer, who is the consumer?]
+
+The classical problem is Producer-Consumer. The main thread is the initial producer because it adds processes to the ready queue. CPU threads are consumers because they take processes from the queue, but they also act as producers when they re-enqueue unfinished processes.
 
 **Semaphores for a bounded queue (name and initial value)**:
-[Name the three semaphores and their initial values.]
+
+For a bounded queue with capacity K, the three semaphores are:
+- empty = K (counts available empty slots)
+- full = 0 (counts available processes)
+- mutex = 1 (provides mutual exclusion)
 
 **Deadlock scenario and prevention**:
-[Describe the scenario and the necessary condition you would break.]
+
+A deadlock can happen if a producer holds the mutex while waiting for an empty slot in a full queue. The consumer cannot acquire the mutex to remove a process, so both threads remain blocked. To prevent this, the producer must wait for an empty slot before acquiring the mutex, avoiding the hold-and-wait situation that caused the deadlock.
 
 ## Summary
 
 **Key concepts I understood through these questions:**
-1.
-2.
-3.
+1. ReentrantLock protects critical sections and prevents race conditions.
+2. Counting semaphores allow threads to wait without busy waiting.
+3. Proper synchronization prevents lost updates and helps avoid deadlocks.
+
 
 **Concepts I need to study more:**
-1.
-2.
+1. Deadlock prevention and the four necessary conditions for deadlock.
+2. Advanced semaphore usage and solving complex synchronization problems.
+
 
 ---
 
@@ -373,33 +433,33 @@ Verification block of **my final version**:
 > ⚠️ **WARNING:** Go through every line. Blackboard does not accept submissions after the deadline, which is **November 14, 2026**.
 
 **Repository**
-- [ ] Repository is **PUBLIC** (Settings → Danger Zone → Visibility)
-- [ ] Repository is renamed to `OS-Assignment3-YourFirstName-YourLastName`
-- [ ] GitHub account uses the university email (`@std.psau.edu.sa`)
+- [x] Repository is **PUBLIC** (Settings → Danger Zone → Visibility)
+- [x] Repository is renamed to `OS-Assignment3-YourFirstName-YourLastName`
+- [x] GitHub account uses the university email (`@std.psau.edu.sa`)
 
 **Code**
-- [ ] Student ID is set in `SchedulerSimulationSync.java` (line 304)
-- [ ] My code is based **only** on the starter of this repository (nothing copied from previous assignments)
-- [ ] Code compiles and runs with no errors, and terminates by itself (no `⛔ WATCHDOG`)
-- [ ] Feature 1 (ready queue lock), Feature 2 (statistics locks) and Feature 3 (semaphore, no busy waiting) all work
-- [ ] **The four verification lines are ✔ in 5 consecutive runs**
-- [ ] Every lock is released in a `finally` block
-- [ ] `RaceWindow`, `Config`, the verification block and the watchdog are **unchanged**
-- [ ] Each feature has clear comments
+- [x] Student ID is set in `SchedulerSimulationSync.java` (line 304)
+- [x] My code is based **only** on the starter of this repository (nothing copied from previous assignments)
+- [x] Code compiles and runs with no errors, and terminates by itself (no `⛔ WATCHDOG`)
+- [x] Feature 1 (ready queue lock), Feature 2 (statistics locks) and Feature 3 (semaphore, no busy waiting) all work
+- [x] **The four verification lines are ✔ in 5 consecutive runs**
+- [x] Every lock is released in a `finally` block
+- [x] `RaceWindow`, `Config`, the verification block and the watchdog are **unchanged**
+- [x] Each feature has clear comments
 
 **Commits**
-- [ ] **At least 4 meaningful commits, ideally 7 or more**
-- [ ] **One commit per feature**
-- [ ] Commits are spread over **different dates** (not all in the last hour)
-- [ ] Everything is **pushed** to GitHub
+- [x] **At least 4 meaningful commits, ideally 7 or more**
+- [x] **One commit per feature**
+- [x] Commits are spread over **different dates** (not all in the last hour)
+- [x] Everything is **pushed** to GitHub
 
 **This file (`MY_WORK.md`)**
-- [ ] Full name and student ID filled in at the top
-- [ ] Development log has **5+ entries** on different dates
-- [ ] Reflection: 4 questions, 5-7 sentences each
-- [ ] Technical answers: 4 questions, 3-5 sentences each, with examples from **your** output (starter output **and** final output pasted in Question 1)
+- [x] Full name and student ID filled in at the top
+- [x] Development log has **5+ entries** on different dates
+- [x] Reflection: 4 questions, 5-7 sentences each
+- [x] Technical answers: 4 questions, 3-5 sentences each, with examples from **your** output (starter output **and** final output pasted in Question 1)
 - [ ] No `[...]` placeholders left
-- [ ] No section headers deleted
+- [x] No section headers deleted
 
 **Video**
 - [ ] 2-3 minutes long, named `StudentID_Assignment3_Demo.mp4`
