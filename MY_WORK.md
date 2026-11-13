@@ -32,7 +32,7 @@
 
 | Field | Your Answer |
 |-------|-------------|
-| **Full Name** | Faisal mohammed Al-Faifi |
+| **Full Name** | Faisal Mohammed Al-Faifi |
 | **Student ID** | 445050079 |
 | **University Email** | 445050079@std.psau.edu.sa |
 | **GitHub Username** | Faisal-M-alfaifi |
@@ -42,7 +42,7 @@
 
 ## 🎥 Video Link
 
-**Video Link**: [Paste your video link here]
+**Video Link** :https://drive.google.com/file/d/1kX9Bm7pKSaJQLed1SRwCqM0CjoWHbF4l/view?usp=sharing
 
 > ⚠️ **WARNING:** The video must be **publicly accessible** ("Anyone with the link can view") on **Google Drive**, **YouTube (Unlisted or Public)** or any other cloud file-sharing system. A private, restricted or broken link counts as a **missing video (-1 mark)**.
 >
@@ -458,15 +458,15 @@ A deadlock can happen if a producer holds the mutex while waiting for an empty s
 - [x] Development log has **5+ entries** on different dates
 - [x] Reflection: 4 questions, 5-7 sentences each
 - [x] Technical answers: 4 questions, 3-5 sentences each, with examples from **your** output (starter output **and** final output pasted in Question 1)
-- [ ] No `[...]` placeholders left
+- [x] No `[...]` placeholders left
 - [x] No section headers deleted
 
 **Video**
-- [ ] 2-3 minutes long, named `StudentID_Assignment3_Demo.mp4`
-- [ ] Shows your name, ID, repository, 3 features (and your lock granularity choice), IDE execution with the verification block, one synchronization concept, and commit history
-- [ ] Link is **public** (tested in an incognito window) and pasted in the **Video Link** section above
+- [x] 2-3 minutes long, named `StudentID_Assignment3_Demo.mp4`
+- [x] Shows your name, ID, repository, 3 features (and your lock granularity choice), IDE execution with the verification block, one synchronization concept, and commit history
+- [x] Link is **public** (tested in an incognito window) and pasted in the **Video Link** section above
 
 **Blackboard**
-- [ ] Submit **only** the link to your public GitHub repository
+- [x] Submit **only** the link to your public GitHub repository
 
 > 🎯 **Good luck!** Start early, commit regularly, and make sure you can explain every line you submit.
